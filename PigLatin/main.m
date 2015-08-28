@@ -12,7 +12,7 @@
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
-        NSString *string = @"This is my first attempt";
+        NSString *string = @"I'm far too sophisticated for Pig Latin";
         [string stringByPigLatinization];
     }
     return 0;

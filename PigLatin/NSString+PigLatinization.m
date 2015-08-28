@@ -14,14 +14,14 @@
 -(NSString *)stringByPigLatinization {
     
     NSArray *words = [self componentsSeparatedByString: @" "];
+    NSMutableString *sentence = [NSMutableString new];
     for (NSString *word in words) {
         NSMutableArray *letters = [self getArrayOfLettersInWord:word];
-        [self moveFirstConsonantToEndIn:letters];
-//        NSString
-//        
-//        loop until substring = aeiouy
-//        NSString *firstLetter = [[sectionTitle substringToIndex:1]
+        NSString *newWord = [[self moveFirstConsonantToEndIn:letters] componentsJoinedByString:@""];
+        [sentence appendString:newWord];
+        [sentence appendString:@"ay "];
     }
+    NSLog(@"%@",sentence);
     
     return self;
 }
@@ -39,7 +39,7 @@
 -(NSMutableArray *)moveFirstConsonantToEndIn:(NSMutableArray *)letters {
     NSMutableArray *firstConsonant = [NSMutableArray new];
     
-    NSSet *vowels = [[NSSet alloc]initWithObjects:@"a",@"e",@"i",@"o",@"u",@"y", nil];
+    NSSet *vowels = [[NSSet alloc]initWithObjects:@"a",@"e",@"i",@"o",@"u",@"y",@"A",@"E",@"I",@"O",@"U",@"Y", nil];
     int i = 0;
     while (![vowels containsObject:letters[i]]) {
         NSString *letter = letters[i];
