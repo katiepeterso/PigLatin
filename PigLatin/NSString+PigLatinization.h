@@ -11,4 +11,5 @@
 @interface NSString (PigLatinization)
 
 -(NSString *)stringByPigLatinization;
+
 @end

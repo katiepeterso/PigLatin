@@ -8,18 +8,6 @@
 
 #import "NSString+PigLatinization.h"
 
-@interface NSString()
-
-@property (nonatomic) NSMutableArray *arrayOfLetters;
-@property (nonatomic) NSString *word;
-@property (nonatomic) NSString *pigLatinWord;
-
--(NSMutableArray *)getArrayOfLettersInWord:(NSString *)word;
-
-
-
-@end
-
 
 @implementation NSString (PigLatinization)
 
@@ -27,8 +15,8 @@
     
     NSArray *words = [self componentsSeparatedByString: @" "];
     for (NSString *word in words) {
-        NSArray *letters = [self getArrayOfLettersInWord:word];
-        NSLog(@"%@", letters);
+        NSMutableArray *letters = [self getArrayOfLettersInWord:word];
+        [self moveFirstConsonantToEndIn:letters];
 //        NSString
 //        
 //        loop until substring = aeiouy
@@ -46,6 +34,21 @@
         [arrayOfLetters addObject:letter];
     }
     return arrayOfLetters;
+}
+
+-(NSMutableArray *)moveFirstConsonantToEndIn:(NSMutableArray *)letters {
+    NSMutableArray *firstConsonant = [NSMutableArray new];
+    
+    NSSet *vowels = [[NSSet alloc]initWithObjects:@"a",@"e",@"i",@"o",@"u",@"y", nil];
+    int i = 0;
+    while (![vowels containsObject:letters[i]]) {
+        NSString *letter = letters[i];
+        [firstConsonant addObject:letter];
+        [letters removeObject:letter];
+        
+    }
+    [letters addObjectsFromArray:firstConsonant];
+    return letters;
 }
 
 @end
